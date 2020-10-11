@@ -102,7 +102,7 @@ img.float {
 }
 
 .bodybg {
-    background-image: url("../img/111.jpeg");
+    background-image: url("../img/111.jpg");
     background-repeat:repeat-x;
     background-size: cover;
 }
