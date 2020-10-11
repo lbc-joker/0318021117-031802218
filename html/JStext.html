@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+        <link rel="stylesheet" type="text/css" href="../bootstrap/css/style.css"/>
+        
+
+        <script src="../jquery/jquery.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+
+    </head>
+    <body class = "bodybg">
+        
+    
+        <ul class="dhbody">
+            <li class="left"><a class="active" >家族树</a></li>
+        </ul>
+        <br>
+        <br>
+        <br>
+             
+        <div class="container" >
+            <label>输入符合规则的信息</label><br>
+            <textarea class="body-text" placeholder="请输入导师关系...." id="myTextarea" cols="50" rows="12"></textarea>
+            <br>
+            <button type="button" class="btn btn-primary"  onclick="getStr()">生成学术家族树</button>
+        </div>
+    
+        <script>
+            //得到文本框的内容存入localStorage
+             function getStr(){
+                 var data = document.getElementById("myTextarea").value;
+                 localStorage.setItem("str", data);//储存数据
+                 console.log(localStorage.getItem("str"));
+                 window.location.href = "index.html";   //页面跳转到"index.html"
+             }
+         </script>
+    
+         
+    </body>
+</html>

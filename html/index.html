@@ -4,119 +4,50 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie-edge">
-        <title>Document</title>
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css">
+
+        <title>FamilyTree</title>
+
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../bootstrap/css/style.css"/>
 
         <script src="../jquery/jquery.js"></script>
         <script src="../bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../jquery/test.js"></script>
+
+        <script type="text/javascript">
+            //就是网上找的模板
+            $(function () //调用test.js中函数
+                {
+                $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '关闭');
+                $('.tree li.parent_li > span').on('click', function (e) {
+                    var children = $(this).parent('li.parent_li').find(' > ul > li');
+                    if (children.is(":visible")) {
+                        children.hide('fast');
+                        $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+                    } else {
+                        children.show('fast');
+                        $(this).attr('title', '关闭').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                    }
+                    e.stopPropagation();
+                });
+            });
+        </script>
 
 
-    
     </head>
     <body>
-        <div class="container">
+
+        <ul class="dhbody">
+            <li class="left"><a href="JStext.html">返回生成器</a></li>
+            <li class="left"><a class="active" href="#contact">家族树</a></li>
+        </ul>
+        <br>
+    <div class="tree well">
+
+        <ul id="root">
+        </ul>
+    </div>
 
 
-            <textarea class="body-text" placeholder="请输入导师关系...." id="data"></textarea>
-
-            
-            <div>
-                <button onclick="myFunction()">生成学术家族树</button>
-            </div>
-        </div>
-        <script>
-           function myFunction(){
-                document.write(1111);
-                let text = document.getElementById("data");
-                var data = text.value; //从输入框获取数据
-                var lis = data.split("\n");  //先按空行分割成多组数据
-                document.write(1111);
-                let rk = new Map();  //用于比较排名，记录某人的最高学历
-                (rk["导师"] = 0),
-                    (rk["博士生"] = 1),
-                    (rk["硕士生"] = 2),
-                    (rk["本科生"] = 3);
-                var ID = 0;
-                let str = ["博士生", "硕士生", "本科生"]; //关键字检测
-                var _this = this;
-                for (var i = 0; i < lis.length; ) {
-                   // document.write(lis[i]);
-                   }
-                   /* var j;
-                    for (j = i + 1; j < lis.length; ++j) {
-                    if (lis[j] == "") break;
-                    }    
-                    // [i,j)为一组数据
-                    let th = lis[i].substring(3);
-
-                    _this.edge[th] = [];
-                    _this.info[th] = "导师";
-                    //使用map,map的第一维是字符串，对应人名，第二维对应一个数组，对应他连接的人
-                    for (var k = i + 1; k < j; ++k) {
-                    var cur, idx;
-                    for (var value of str) {
-                        idx = lis[k].indexOf(value);
-                        if (idx != -1) {
-                        cur = lis[k].substring(0, idx + 3);
-                        _this.edge[th].push(lis[k].substring(0, idx + 3) + th);
-                        _this.edge[cur + th] = [];
-                        _this.info[cur + th] = value;
-                        _this.used[cur + th] = 1;
-                        //used用于标记某个点是否有父节点
-                            //info用于处理每个人的最高学历
-                        break;
-                        }
-                    }
-                    var stu = lis[k].substring(idx + 4).split("、");
-                    for (var value of stu) {
-                        //更新最高学历
-                        if (_this.info[value] == null || rk[_this.info[value]] > rk[cur])
-                        _this.info[value] = cur;
-                        //通过、分割，进行连边
-                        _this.edge[cur + th].push(value);
-                        _this.used[value] = 1;
-                    }
-                    }
-                    i = j + 1;
-                }
-                    
-                for (var key in _this.info) {
-                        //可能存在多个树，我们之前将有父节点的点used都标记了，
-                    //因此used没被标记过的点则一定是根节点，从根节点出发，递归遍历图，处理数据格式
-                    if (_this.used[key] == null) {
-                    _this.data.push(_this.formatData(key, -1));
-                    }
-                }
-                this.$router.push({
-                    path: "/user/relation",
-                    query: {
-                    data: JSON.stringify(_this.data)
-                    }
-                });
-                },
-                formatData(rt, fa) {
-                //每个点的信息包括id，name，lv（学历），以及他的儿子节点，其他就是普通的dfs。
-                let now = {};
-                now.name = rt;
-                now.id = this.ID;
-                this.ID += 1;
-                now.lv = this.info[rt];
-                now.children = [];
-                let arr = this.edge[rt];
-                if (arr == null) return now;
-                for (var i = 0; i < arr.length; ++i) {
-                    now.children.push(this.formatData(arr[i], rt));
-                }
-                if (rt.indexOf(fa) != -1) {
-                    let tmp = rt.substring(0, rt.indexOf(fa));
-                    now.name = tmp;
-                }
-                return now;*/
-            };
-
-        </script>
     </body>
-
-
-</html>
+    </html>
